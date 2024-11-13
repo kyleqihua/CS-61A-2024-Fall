@@ -8,8 +8,11 @@ def digit(n, k):
     >>> digit(3579, 10)
     0
     """
-    return  
-
+    return (n % pow(10, k + 1)) // pow(10, k)
+    # return (n % (int(str(n)[-len(str(n)):-(k + 1)])*pow(10, k + 1))) // pow(10, k) # cannot work when k = 10
+    # return  n - int(str(n)[0])*pow(10, k + 1)
+    
+# Use // and % and the built-in pow function to isolate a particular digit of n.
 
 def middle(a, b, c):
     """Return the number among a, b, and c that is not the smallest or largest.
@@ -26,7 +29,7 @@ def middle(a, b, c):
     >>> middle(30, 5, 40)
     30
     """
-    return ____
+    return a + b + c - max(a, b, c) - min(a, b, c)
 
 
 def falling(n, k):
@@ -42,7 +45,15 @@ def falling(n, k):
     1
     """
     "*** YOUR CODE HERE ***"
-
+    if k == 0:
+        return 1
+    i = 1
+    mul_falling = n
+    while i < k:
+        n = n - 1
+        mul_falling = mul_falling * n
+        i = i + 1
+    return mul_falling
 
 def divisible_by_k(n, k):
     """
@@ -65,6 +76,15 @@ def divisible_by_k(n, k):
     0
     """
     "*** YOUR CODE HERE ***"
+    i = 1
+    step = 0
+    while i <= n:
+        if i % k == 0:
+            step = step +1
+            print(i)
+        i = i + 1
+    return step 
+
 
 
 def sum_digits(y):
@@ -81,6 +101,17 @@ def sum_digits(y):
     6
     """
     "*** YOUR CODE HERE ***"
+    i = 1
+    dig_sum = 0
+    length = len(str(y))
+    while i <= length:
+        dig = y // pow(10, length - i)
+        dig_sum = dig_sum + dig 
+        y = y % pow(10, length - i)  
+        i = i + 1
+    return dig_sum
+     
+    
 
 
 def double_eights(n):
@@ -99,4 +130,13 @@ def double_eights(n):
     False
     """
     "*** YOUR CODE HERE ***"
-
+    i = 0
+    length = len(str(n))
+    if len(str(n)) == 1:
+        return False
+    while i < len(str(n)):
+        if str(n)[i] == "8":
+            if str(n)[i + 1] == "8":
+                return True
+        i = i + 1
+    return False 
