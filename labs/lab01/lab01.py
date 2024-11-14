@@ -131,7 +131,6 @@ def double_eights(n):
     """
     "*** YOUR CODE HERE ***"
     i = 0
-    length = len(str(n))
     if len(str(n)) == 1:
         return False
     while i < len(str(n)):
